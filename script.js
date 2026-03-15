@@ -37,7 +37,7 @@ const daftarHarga = {
 };
 
 // GANTI DENGAN URL GOOGLE APPS SCRIPT KAMU
-const scriptURL = 'MASUKKAN_URL_WEB_APP_KAMU_DISINI';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyah4LVttV3UEwbpivNwcEcJxdQ6mnwwyby-QPkTyDiyWNPdrNdRc5n886WcIPWQXW3lA/exec';
 
 const appSelect = document.getElementById('appType');
 const variantSelect = document.getElementById('appVariant');
