@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeni Store | Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <img src="logo.png" alt="Zenitron Store Logo" class="main-logo">
+        <p class="slogan">Berkah Ramadhan, Langganan Premium Lebih Hemat!</p>
+    </header>
+
+    <div class="main-layout">
+        <section class="form-section">
+            <h3>Input Pesanan Baru</h3>
+            <form id="orderForm">
+                <input type="text" id="buyerName" placeholder="Nama Pembeli" required>
+                
+                <select id="appType" required>
+                    <option value="">Pilih Aplikasi...</option>
+                    <option value="Canva Pro">Canva Pro</option>
+                    <option value="Viu Premium">Viu Premium</option>
+                    <option value="Netflix">Netflix</option>
+                    <option value="YouTube Premium">YouTube Premium</option>
+                    <option value="Spotify">Spotify</option>
+                </select>
+
+                <select id="appVariant" required>
+                    <option value="">Pilih Variasi...</option>
+                </select>
+
+                <input type="text" id="displayPrice" placeholder="Harga Otomatis" readonly>
+                
+                <button type="submit">Simpan & Pesan via WA</button>
+            </form>
+        </section>
+
+        <section class="dashboard-section">
+            <h3>Rekap Penjualan (Dashboard)</h3>
+            <table border="1" id="orderTable">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Aplikasi</th>
+                        <th>Harga</th>
+                        <th>Waktu</th>
+                    </tr>
+                </thead>
+                <tbody id="orderList">
+                    </tbody>
+            </table>
+            <button onclick="hapusSemua()" style="background: red; margin-top: 10px;">Reset Data</button>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+/* --- RESET & BASIC --- */
+body {
+    background-color: #2e1a47; /* Ungu Tua Ramadhan */
+    color: #fff;
+    font-family: 'Poppins', sans-serif; /* Font lebih modern, unduh di Google Font jika perlu */
+    margin: 0;
+    padding: 20px;
+    background-image: url('https://www.transparenttextures.com/patterns/black-thread-light.png'); /* Tekstur halus */
+}
+
+/* --- HEADER & LOGO --- */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.main-logo {
+    max-width: 300px; /* Atur ukuran logo */
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5)); /* Efek cahaya emas di sekitar logo */
+}
+
+.slogan {
+    color: #ffd700; /* Warna Emas */
+    font-size: 1.1em;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+/* --- LAYOUT UTAMA --- */
+.main-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* --- KOTAK SEKSI (FORM & DASHBOARD) --- */
+.form-section, .dashboard-section {
+    background: rgba(255, 255, 255, 0.05); /* Putih transparan */
+    padding: 30px;
+    border-radius: 20px;
+    border: 2px solid #ffd700; /* Bingkai Emas */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    min-width: 380px;
+    backdrop-filter: blur(5px); /* Efek kaca blur */
+}
+
+h3 {
+    color: #ffd700;
+    text-align: center;
+    margin-top: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --- STYLE INPUT FORM --- */
+form input, form select {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    box-sizing: border-box;
+    background-color: rgba(0,0,0,0.2);
+    border: 1px solid #5d3a8a;
+    border-radius: 8px;
+    color: white;
+    font-size: 1em;
+}
+
+form input::placeholder {
+    color: #bbb;
+}
+
+form select option {
+    background-color: #2e1a47; /* Warna option saat diklik */
+    color: white;
+}
+
+/* --- TOMBOL --- */
+button[type="submit"] {
+    background: linear-gradient(45deg, #ffd700, #ff8c00); /* Gradasi Emas Orange */
+    color: #2e1a47;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+}
+
+/* --- TABEL DASHBOARD --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    color: #eee;
+}
+
+th {
+    background-color: rgba(255, 215, 0, 0.1);
+    color: #ffd700;
+    padding: 15px;
+    text-align: left;
+    border-bottom: 2px solid #ffd700;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #5d3a8a;
+}
+
+/* Tombol Reset Merah tapi tetap selaras */
+button[onclick="hapusSemua()"] {
+    background-color: #8b0000;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    opacity: 0.8;
+}
+
+button[onclick="hapusSemua()"]:hover {
+    opacity: 1;
+}
