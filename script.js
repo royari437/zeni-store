@@ -12,18 +12,27 @@ const daftarHarga = {
         "6 Bulan (private)": 12000,
         "1 Tahun (private)": 15000
     },
+    "YouTube Premium": {
+        "IndPlan 1 Bulan": 12000,
+        "IndPlan 2 Bulan": 20000,
+        "IndPlan 3 Bulan": 28000,
+        "FamPlan 1 Bulan": 7000,
+        "FamPlan 2 Bulan": 14000,
+        "FamPlan 3 Bulan": 20000
+    },
     "Netflix": {
         "1P1U (Sharing)": 33000,
         "Semi Private": 38000,
         "Private": 115000
     },
-    "YouTube Premium": {
-        "FamPlan 1 Bulan": 7000,
-        "IndPlan 1 Bulan": 12000
-    },
     "Spotify": {
         "Individual 1 Bulan": 25000,
-        "Family 1 Bulan": 24000
+        "Individual 2 Bulan": 40000,
+        "Individual 3 Bulan": 52000,
+        "Individual 4 Bulan": 60000,
+        "Family 1 Bulan": 24000,
+        "Family 2 Bulan": 38000,
+        "Family 3 Bulan": 50000
     }
 };
 
@@ -55,25 +64,46 @@ variantSelect.addEventListener('change', function() {
 });
 
 // 3. LOGIKA SIMPAN DATA (Sama seperti sebelumnya)
+// Ganti URL ini dengan URL Web App yang baru kamu salin tadi
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyah4LVttV3UEwbpivNwcEcJxdQ6mnwwyby-QPkTyDiyWNPdrNdRc5n886WcIPWQXW3lA/exec';
+
 document.getElementById('orderForm').addEventListener('submit', function(e) {
     e.preventDefault();
+    
+    // Ambil data dari form
     const nama = document.getElementById('buyerName').value;
     const app = appSelect.value;
     const variant = variantSelect.value;
     const harga = priceInput.value;
+    const waktu = new Date().toLocaleString('id-ID'); // Format waktu Indonesia
 
-    const dataBaru = { nama, aplikasi: `${app} (${variant})`, harga, waktu: new Date().toLocaleString() };
+    const dataBaru = { nama, aplikasi: `${app} (${variant})`, harga, waktu };
 
-    let dataLama = JSON.parse(localStorage.getItem('pesanan')) || [];
-    dataLama.push(dataBaru);
-    localStorage.setItem('pesanan', JSON.stringify(dataLama));
+    // Tampilkan loading sederhana pada tombol
+    const btn = this.querySelector('button');
+    btn.innerText = "Mengirim...";
+    btn.disabled = true;
 
-    tampilkanData();
-    
-    // Link WA
-    const pesan = `Halo Zeni Store!\nNama: ${nama}\nOrder: ${app} - ${variant}\nTotal: ${harga}`;
-    window.open(`https://wa.me/6285777388195?text=${encodeURIComponent(pesan)}`, '_blank');
-    this.reset();
+    // 1. Kirim Data ke Google Sheets
+    fetch(scriptURL, { 
+        method: 'POST', 
+        body: JSON.stringify(dataBaru) 
+    })
+    .then(response => {
+        alert("Pesanan Tercatat di Sistem Berkah Ramadhan!");
+        
+        // 2. Lanjut ke WhatsApp
+        const pesan = `Halo Zeni Store!\nNama: ${nama}\nOrder: ${app} - ${variant}\nTotal: ${harga}`;
+        window.open(`https://wa.me/6285777388195?text=${encodeURIComponent(pesan)}`, '_blank');
+        
+        this.reset();
+        priceInput.value = '';
+    })
+    .catch(error => alert('Waduh, ada error: ' + error.message))
+    .finally(() => {
+        btn.innerText = "Simpan & Pesan via WA";
+        btn.disabled = false;
+    });
 });
 
 function tampilkanData() {
