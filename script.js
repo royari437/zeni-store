@@ -36,20 +36,21 @@ const daftarHarga = {
     }
 };
 
+// GANTI DENGAN URL GOOGLE APPS SCRIPT KAMU
+const scriptURL = 'MASUKKAN_URL_WEB_APP_KAMU_DISINI';
+
 const appSelect = document.getElementById('appType');
 const variantSelect = document.getElementById('appVariant');
 const priceInput = document.getElementById('displayPrice');
+const orderForm = document.getElementById('orderForm');
 
 // 2. LOGIKA PILIHAN OTOMATIS
 appSelect.addEventListener('change', function() {
     const pilihanApp = this.value;
     variantSelect.innerHTML = '<option value="">Pilih Variasi...</option>';
     priceInput.value = '';
-
     if (pilihanApp && daftarHarga[pilihanApp]) {
-        // Ambil daftar variasi dari database
-        const variasi = Object.keys(daftarHarga[pilihanApp]);
-        variasi.forEach(v => {
+        Object.keys(daftarHarga[pilihanApp]).forEach(v => {
             variantSelect.innerHTML += `<option value="${v}">${v}</option>`;
         });
     }
@@ -63,60 +64,41 @@ variantSelect.addEventListener('change', function() {
     }
 });
 
-// 3. LOGIKA SIMPAN DATA (Sama seperti sebelumnya)
-// Ganti URL ini dengan URL Web App yang baru kamu salin tadi
-const scriptURL = 'https://script.google.com/macros/s/AKfycbyah4LVttV3UEwbpivNwcEcJxdQ6mnwwyby-QPkTyDiyWNPdrNdRc5n886WcIPWQXW3lA/exec';
-
-document.getElementById('orderForm').addEventListener('submit', function(e) {
+// 3. LOGIKA KIRIM DATA
+orderForm.addEventListener('submit', function(e) {
     e.preventDefault();
     
-    // Ambil data dari form
+    // Animasi Loading pada Tombol
+    const btn = this.querySelector('button');
+    const originalText = btn.innerText;
+    btn.innerText = "Mengirim...";
+    btn.disabled = true;
+
     const nama = document.getElementById('buyerName').value;
     const app = appSelect.value;
     const variant = variantSelect.value;
     const harga = priceInput.value;
-    const waktu = new Date().toLocaleString('id-ID'); // Format waktu Indonesia
+    const waktu = new Date().toLocaleString('id-ID');
 
     const dataBaru = { nama, aplikasi: `${app} (${variant})`, harga, waktu };
 
-    // Tampilkan loading sederhana pada tombol
-    const btn = this.querySelector('button');
-    btn.innerText = "Mengirim...";
-    btn.disabled = true;
-
-    // 1. Kirim Data ke Google Sheets
-    fetch(scriptURL, { 
-        method: 'POST', 
-        body: JSON.stringify(dataBaru) 
-    })
+    fetch(scriptURL, { method: 'POST', body: JSON.stringify(dataBaru) })
     .then(response => {
-        alert("Pesanan Tercatat di Sistem Berkah Ramadhan!");
+        alert("Pesanan Berhasil Tercatat!");
         
-        // 2. Lanjut ke WhatsApp
+        // Buka WhatsApp
         const pesan = `Halo Zeni Store!\nNama: ${nama}\nOrder: ${app} - ${variant}\nTotal: ${harga}`;
         window.open(`https://wa.me/6285777388195?text=${encodeURIComponent(pesan)}`, '_blank');
         
-        this.reset();
+        orderForm.reset();
         priceInput.value = '';
     })
-    .catch(error => alert('Waduh, ada error: ' + error.message))
+    .catch(error => {
+        console.error('Error!', error.message);
+        alert("Gagal mengirim data, tapi silakan lanjut ke WA.");
+    })
     .finally(() => {
-        btn.innerText = "Simpan & Pesan via WA";
+        btn.innerText = originalText;
         btn.disabled = false;
     });
 });
-
-function tampilkanData() {
-    const data = JSON.parse(localStorage.getItem('pesanan')) || [];
-    const orderList = document.getElementById('orderList');
-    orderList.innerHTML = '';
-    data.forEach(item => {
-        orderList.innerHTML += `<tr><td>${item.nama}</td><td>${item.aplikasi}</td><td>${item.harga}</td><td>${item.waktu}</td></tr>`;
-    });
-}
-
-function hapusSemua() {
-    if(confirm("Hapus semua rekap?")) { localStorage.removeItem('pesanan'); tampilkanData(); }
-}
-
-tampilkanData();
