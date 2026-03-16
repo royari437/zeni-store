@@ -134,7 +134,7 @@ orderForm.addEventListener('submit', function(e) {
         
         // Buka WhatsApp
         const pesan = `Halo Zeni Store!\nNama: ${nama}\nOrder: ${app} - ${variant}\nTotal: ${harga}`;
-        window.open(`https://wa.me/6285777388195?text=${encodeURIComponent(pesan)}`, '_blank');
+        window.open(`https://wa.me/628980009650?text=${encodeURIComponent(pesan)}`, '_blank');
         
         orderForm.reset();
         priceInput.value = '';
