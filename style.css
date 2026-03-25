@@ -134,46 +134,45 @@ button[onclick="hapusSemua()"]:hover {
     opacity: 1;
 }
 
-/* --- RESPONSIVE MOBILE --- */
-@media (max-width: 768px) {
+/* --- PERBAIKAN TOTAL TAMPILAN HP --- */
+@media (max-width: 480px) {
     body {
-        padding: 15px; /* Memberi ruang di pinggir layar */
-        background-attachment: scroll; /* Agar background tidak berat di HP */
+        /* Memastikan background menutupi seluruh layar tanpa membuat scroll samping */
+        background-size: cover;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Mencegah geser ke kanan */
     }
 
-        /* Pastikan container fleksibel */
     .container {
-        width: 95%;           /* Mengambil 95% lebar layar HP */
-        max-width: 450px;     /* Tapi tidak akan lebih lebar dari 450px di Laptop */
-        margin: 20px auto;    /* Center otomatis */
-        padding: 20px;
-        box-sizing: border-box; /* Agar padding tidak menambah lebar kotak */
+        /* Kotak ungu dibuat sedikit lebih ramping (90% lebar HP) */
+        width: 90% !important;
+        max-width: none; 
+        margin: 20px auto;
+        padding: 15px;
+        box-sizing: border-box; /* Sangat penting! Agar padding tidak nambah lebar */
+        border-radius: 15px;
     }
 
-    /* Pastikan semua input tidak "balapan" keluar kotak */
-    input, select, button {
-        width: 100% !important; /* Memaksa input memenuhi lebar container */
-        max-width: 100%;
+    h2 {
+        font-size: 1.2rem !important; /* Judul 'INPUT PESANAN BARU' dikecilkan sedikit */
+        letter-spacing: 1px;
+    }
+
+    input, select, .price-display, button {
+        width: 100% !important; /* Memastikan input tidak keluar kotak */
+        font-size: 14px !important;
+        margin-bottom: 10px;
         box-sizing: border-box;
-        display: block;
     }
 
-    /* Jika kamu masih punya logo */
-    .logo {
-        width: 80px;
-        height: auto;
+    .logo-container img {
+        width: 60px; /* Logo diperkecil agar pas di HP */
     }
-}
-
-/* Menyesuaikan teks agar tidak overflow */
-h1, h2, h3 {
-    word-wrap: break-word;
-    font-size: 1.5rem; /* Ukuran lebih kecil untuk HP */
-    text-align: center;
-}
-
-/* Jika ada gambar/logo, pastikan tidak lebih lebar dari layar */
-img {
-    max-width: 100%;
-    height: auto;
+    
+    .slogan {
+        font-size: 0.9rem !important;
+        padding: 0 10px;
+    }
 }
