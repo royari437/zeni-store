@@ -133,3 +133,33 @@ button[onclick="hapusSemua()"] {
 button[onclick="hapusSemua()"]:hover {
     opacity: 1;
 }
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+    body {
+        padding: 15px; /* Memberi ruang di pinggir layar */
+        background-attachment: scroll; /* Agar background tidak berat di HP */
+    }
+
+    .container {
+        width: 100%; /* Box form akan melebar memenuhi layar HP */
+        margin: 10px auto;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Ukuran judul lebih proporsional */
+    }
+
+    input, select, button {
+        font-size: 16px; /* Mencegah auto-zoom pada iPhone/Safari */
+        padding: 12px;   /* Tombol lebih besar agar mudah ditekan jari */
+    }
+
+    /* Jika kamu masih punya logo */
+    .logo {
+        width: 80px;
+        height: auto;
+    }
+}
