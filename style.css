@@ -1,58 +1,63 @@
 /* --- RESET & BASIC --- */
 body {
-    background-color: #2e1a47; /* Ungu Tua Ramadhan */
+    background-color: #2e1a47; 
     color: #fff;
-    font-family: 'Poppins', sans-serif; /* Font lebih modern, unduh di Google Font jika perlu */
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 20px;
-    background-image: url('https://www.transparenttextures.com/patterns/black-thread-light.png'); /* Tekstur halus */
+    background-image: url('https://www.transparenttextures.com/patterns/black-thread-light.png');
+    background-attachment: fixed;
+    overflow-x: hidden; /* Mencegah geser kanan-kiri yang mengganggu */
 }
 
 /* --- HEADER & LOGO --- */
 header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .main-logo {
-    max-width: 300px; /* Atur ukuran logo */
+    width: 100%;
+    max-width: 280px; /* Ukuran pas untuk Desktop & HP */
     height: auto;
-    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5)); /* Efek cahaya emas di sekitar logo */
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
 }
 
 .slogan {
-    color: #ffd700; /* Warna Emas */
-    font-size: 1.1em;
+    color: #ffd700;
+    font-size: 1rem;
     font-style: italic;
     margin-top: 10px;
+    padding: 0 15px;
 }
 
 /* --- LAYOUT UTAMA --- */
 .main-layout {
     display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
     justify-content: center;
-    padding: 20px;
+    padding: 10px;
 }
 
-/* --- KOTAK SEKSI (FORM & DASHBOARD) --- */
-.form-section, .dashboard-section {
-    background: rgba(255, 255, 255, 0.05); /* Putih transparan */
-    padding: 30px;
+/* --- KOTAK FORM (REVISI TOTAL) --- */
+.form-section {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
     border-radius: 20px;
-    border: 2px solid #ffd700; /* Bingkai Emas */
+    border: 2px solid #ffd700;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    min-width: 380px;
-    backdrop-filter: blur(5px); /* Efek kaca blur */
+    width: 100%;           /* Fleksibel mengikuti layar */
+    max-width: 400px;      /* Batas maksimal di Laptop */
+    backdrop-filter: blur(8px);
+    box-sizing: border-box; /* WAJIB: agar padding tidak nambah lebar */
 }
 
-h3 {
+h2 {
     color: #ffd700;
     text-align: center;
     margin-top: 0;
     text-transform: uppercase;
     letter-spacing: 2px;
+    font-size: 1.3rem;
 }
 
 /* --- STYLE INPUT FORM --- */
@@ -61,26 +66,17 @@ form input, form select {
     width: 100%;
     margin-bottom: 15px;
     padding: 12px;
-    box-sizing: border-box;
-    background-color: rgba(0,0,0,0.2);
+    box-sizing: border-box; /* Agar input tidak keluar kotak */
+    background-color: rgba(0,0,0,0.3);
     border: 1px solid #5d3a8a;
     border-radius: 8px;
     color: white;
-    font-size: 1em;
-}
-
-form input::placeholder {
-    color: #bbb;
-}
-
-form select option {
-    background-color: #2e1a47; /* Warna option saat diklik */
-    color: white;
+    font-size: 16px; /* Ukuran ideal agar HP tidak auto-zoom */
 }
 
 /* --- TOMBOL --- */
 button[type="submit"] {
-    background: linear-gradient(45deg, #ffd700, #ff8c00); /* Gradasi Emas Orange */
+    background: linear-gradient(45deg, #ffd700, #ff8c00);
     color: #2e1a47;
     border: none;
     padding: 15px;
@@ -88,91 +84,31 @@ button[type="submit"] {
     cursor: pointer;
     font-weight: bold;
     width: 100%;
-    font-size: 1.1em;
+    font-size: 1.1rem;
     transition: all 0.3s ease;
+    margin-top: 10px;
 }
 
 button[type="submit"]:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
 }
 
-/* --- TABEL DASHBOARD --- */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    color: #eee;
-}
-
-th {
-    background-color: rgba(255, 215, 0, 0.1);
-    color: #ffd700;
-    padding: 15px;
-    text-align: left;
-    border-bottom: 2px solid #ffd700;
-}
-
-td {
-    padding: 12px;
-    border-bottom: 1px solid #5d3a8a;
-}
-
-/* Tombol Reset Merah tapi tetap selaras */
-button[onclick="hapusSemua()"] {
-    background-color: #8b0000;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 15px;
-    opacity: 0.8;
-}
-
-button[onclick="hapusSemua()"]:hover {
-    opacity: 1;
-}
-
-/* --- PERBAIKAN TOTAL TAMPILAN HP --- */
+/* --- RESPONSIVE MOBILE (KHUSUS HP) --- */
 @media (max-width: 480px) {
     body {
-        /* Memastikan background menutupi seluruh layar tanpa membuat scroll samping */
-        background-size: cover;
-        background-attachment: fixed;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden; /* Mencegah geser ke kanan */
+        padding: 10px;
     }
 
-    .container {
-        /* Kotak ungu dibuat sedikit lebih ramping (90% lebar HP) */
-        width: 90% !important;
-        max-width: none; 
-        margin: 20px auto;
-        padding: 15px;
-        box-sizing: border-box; /* Sangat penting! Agar padding tidak nambah lebar */
-        border-radius: 15px;
+    .form-section {
+        padding: 20px 15px; /* Padding lebih kecil agar konten tidak sesak */
     }
 
     h2 {
-        font-size: 1.2rem !important; /* Judul 'INPUT PESANAN BARU' dikecilkan sedikit */
-        letter-spacing: 1px;
+        font-size: 1.1rem;
     }
 
-    input, select, .price-display, button {
-        width: 100% !important; /* Memastikan input tidak keluar kotak */
-        font-size: 14px !important;
-        margin-bottom: 10px;
-        box-sizing: border-box;
-    }
-
-    .logo-container img {
-        width: 60px; /* Logo diperkecil agar pas di HP */
-    }
-    
-    .slogan {
-        font-size: 0.9rem !important;
-        padding: 0 10px;
+    .main-logo {
+        max-width: 200px; /* Logo lebih proporsional di HP */
     }
 }

@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Zeni Store | Admin Dashboard</title>
+    <title>Zeni Store | Berkah Ramadhan</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <img src="logo.png" alt="Zenitron Store Logo" class="main-logo">
+        <img src="logo.jpg" alt="Zenitron Store Logo" class="main-logo">
         <p class="slogan">Berkah Ramadhan, Langganan Premium Lebih Hemat!</p>
     </header>
 
     <div class="main-layout">
-        <section class="form-section">
-            <h3>Input Pesanan Baru</h3>
+        <section class="form-section container">
+            <h2>Input Pesanan Baru</h2>
             <form id="orderForm">
                 <input type="text" id="buyerName" placeholder="Nama Pembeli" required>
                 
@@ -40,7 +40,7 @@
                     <option value="">Pilih Variasi...</option>
                 </select>
 
-                <input type="text" id="displayPrice" placeholder="Harga Otomatis" readonly>
+                <input type="text" id="displayPrice" class="price-display" placeholder="Harga Otomatis" readonly>
                 
                 <button type="submit">Simpan & Pesan via WA</button>
             </form>
