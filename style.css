@@ -141,20 +141,21 @@ button[onclick="hapusSemua()"]:hover {
         background-attachment: scroll; /* Agar background tidak berat di HP */
     }
 
+        /* Pastikan container fleksibel */
     .container {
-        width: 100%; /* Box form akan melebar memenuhi layar HP */
-        margin: 10px auto;
+        width: 95%;           /* Mengambil 95% lebar layar HP */
+        max-width: 450px;     /* Tapi tidak akan lebih lebar dari 450px di Laptop */
+        margin: 20px auto;    /* Center otomatis */
         padding: 20px;
-        box-sizing: border-box;
+        box-sizing: border-box; /* Agar padding tidak menambah lebar kotak */
     }
 
-    h2 {
-        font-size: 1.5rem; /* Ukuran judul lebih proporsional */
-    }
-
+    /* Pastikan semua input tidak "balapan" keluar kotak */
     input, select, button {
-        font-size: 16px; /* Mencegah auto-zoom pada iPhone/Safari */
-        padding: 12px;   /* Tombol lebih besar agar mudah ditekan jari */
+        width: 100% !important; /* Memaksa input memenuhi lebar container */
+        max-width: 100%;
+        box-sizing: border-box;
+        display: block;
     }
 
     /* Jika kamu masih punya logo */
@@ -162,4 +163,17 @@ button[onclick="hapusSemua()"]:hover {
         width: 80px;
         height: auto;
     }
+}
+
+/* Menyesuaikan teks agar tidak overflow */
+h1, h2, h3 {
+    word-wrap: break-word;
+    font-size: 1.5rem; /* Ukuran lebih kecil untuk HP */
+    text-align: center;
+}
+
+/* Jika ada gambar/logo, pastikan tidak lebih lebar dari layar */
+img {
+    max-width: 100%;
+    height: auto;
 }
